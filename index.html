@@ -9,224 +9,634 @@
 <meta property="image" content="https://i.imgur.com/f21xZtQ_d.webp?maxwidth=760&fidelity=grand">
 	<meta property="og:title" content="https://www.yume-eth.com">
 <meta property="og:image" content="https://i.imgur.com/f21xZtQ_d.webp?maxwidth=760&fidelity=grand">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Odia:wght@200&family=Julius+Sans+One:wght@400&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
-  <style>
+ <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  /* font styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body, html {
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+/* primary color palette */
+:root {
+  --primary-color: #3f51b5; /* blue */
+  --secondary-color: #ff9800; /* orange */
 }
 
-h1 {
-  font-family: 'Julius Sans One', sans-serif;
-  font-size: 4.5rem;
-  letter-spacing: 0.5rem;
+.hero p, #community p {
+  font-size:24px;
+  display:flex;
+  align-items:center;
+  row-gap:10px;
+  justify-content:center;
+}
+.hero h2 {
+  font-size:36px;
+  text-align:center;
+}
+
+/* body styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #222;
+  transition: background-color 0.2s ease;
+}
+
+/* header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* navigation styles */
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: var(--secondary-color);
+  transition: background-color 0.2s ease;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 0.5rem;
+}
+
+nav a {
+  display: block;
+  padding: 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+nav a:hover {
+  background-color: var(--primary-color);
+}
+
+/* main styles */
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
 }
 
 p {
-  margin-top: 1rem;
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
 }
 
-a {
-  color:#5bc0de;
+/* theme toggle button */
+#theme-toggle, .mat-icon-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-a:hover {
-  color: #31b0d5;
+.mat-icon-button{
+color:#fff;}
+
+#theme-toggle:focus,  .mat-icon-button:focus {
+  outline: none;
+}
+
+#theme-toggle:hover, .mat-icon-button:hover {
+  opacity: 0.7;
+}
+
+footer {
+  position:absolute;
+  background-color: #252b4a;
+  color:#fff;
+  font-weight:400;
+  width:100%;
+  margin:0;
+  padding:0;
+  padding:20px;
+  text-align:center;
+  font-size:16px;
+}
+
+.mat-icon-button {
+background:transparent;
+font-size:16px;
+  margin-right: 0.5rem;
+}
+
+#theme-toggle-icon{
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+}
+
+.dark-mode #theme-toggle-icon {
+  color: var(--secondary-color);
+}
+
+.d-flex { display:flex; }
+/* dark mode styles */
+.dark-mode {
+  background-color: #222;
+  color: #fff;
+}
+
+.dark-mode header {
+  background-color: var(--secondary-color);
+}
+
+.dark-mode nav {
+  background-color: var(--primary-color);
+}
+
+.dark-mode nav a {
+  color: #fff;
+}
+
+.dark-mode nav a:hover {
+  background-color: var(--secondary-color);
+}
+
+/* theme toggle */
+.theme-toggle {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f1c40f; /* orange color */
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-label::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background-color: #ffffff; /* white color */
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #3498db; /* blue color */
+}
+
+.toggle-checkbox:checked + .toggle-label::before {
+  transform: translateX(20px);
+}
+
+/* theme toggle button */
+#theme-toggle {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius:8px;
+  padding:10px;
+  color: #fff;
+}
+
+#theme-toggle:focus {
+  outline: none;
+}
+
+#theme-toggle .toggle-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+#theme-toggle .toggle-text {
+  font-size: 14px;
+}
+
+#theme-toggle.light-mode .toggle-icon {
+  color: #fff;
+}
+
+#theme-toggle.dark-mode .toggle-icon {
+  color: #000;
+}
+
+#theme-toggle.light-mode .toggle-text {
+  color: #fff;
+}
+
+#theme-toggle.dark-mode .toggle-text {
+  color: #000;
+}
+
+nav.dark-mode #theme-toggle {
+  background-color: #fff;
+  color: #000;
+}
+
+nav.dark-mode #theme-toggle .toggle-icon {
+  color: #000;
+}
+
+nav.dark-mode #theme-toggle .toggle-text {
+  color: #000;
+}
+/* Theme Toggle Button */
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+#theme-toggle label {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+#theme-toggle input[type="checkbox"] {
+  display: none;
+}
+
+#theme-toggle .toggle-box {
+  display: inline-block;
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background-color: #9ea2ff;
+  margin: 0 0.5rem;
+}
+
+#theme-toggle .toggle-circle {
+  display: inline-block;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: white;
+  left: 0;
+  top: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+#theme-toggle input[type="checkbox"]:checked + .toggle-box .toggle-circle {
+  transform: translateX(1rem);
+}
+
+/* Main Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f2f5;
+  color: #333333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+ 
+
+
+}
+/* Theme Toggle Button */
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+  
+#theme-toggle label {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+#theme-toggle input[type="checkbox"] {
+  display: none;
+}
+
+#theme-toggle .toggle-box {
+  display: inline-block;
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background-color: #9ea2ff;
+  margin: 0 0.5rem;
+}
+
+#theme-toggle .toggle-circle {
+  display: inline-block;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: white;
+  left: 0;
+  top: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+#theme-toggle input[type="checkbox"]:checked + .toggle-box .toggle-circle {
+  transform: translateX(1rem);
+}
+
+/* Main Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f2f5;
+  color: #333333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1b1e36;
+  color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  background-color: #252b4a;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 1rem;
+}
+
+nav a {
+  display: block;
+  padding: 1rem;
+  color: white;
+}
+
+main {
+  margin: 2rem;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #9ea2ff;
+  color: white;
+  border-radius: 0.5rem;
   text-decoration: none;
 }
 
-#hm {
-  min-height: 100%;
+.btn:hover {
+  background-color: #7c81ff;
 }
 
-.heading {
-  color: #FFF;
-  left: 0;
-  position: absolute;
+section {
+  margin: 2rem 0;
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+/* roadmap section */
+#roadmap {
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#roadmap h2, #community h2 {
+  font-size: 36px;
+  font-weight: bold;
   text-align: center;
-  top: 40%;
-  width: 100%;
+  margin-bottom: 40px;
 }
 
-.middle {
-  color: #FFF;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  top: 30%;
-  width: 100%;
+#roadmap .item {
+  display: flex;
+  margin-bottom: 40px;
 }
 
-.bg-img1 {
-  background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://wallpapercave.com/wp/wp1906348.png');
+#roadmap .item:last-child {
+  margin-bottom: 0;
 }
 
-.bg-img2 {
-  background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://i.pinimg.com/originals/96/18/6b/96186b308addc3c4700a26adb3aac278.gif');
+#roadmap .item .icon {
+  font-size: 48px;
+  color: #ffa500;
+  margin-right: 30px;
 }
 
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  min-height: 100%;
-  position: relative;
+#roadmap .item .text {
+  font-size: 20px;
+  line-height: 1.5;
 }
 
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 850px;
-}
-
-.card {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-.card-text {
-  font-size: 1rem;
-  font-weight: 300;
-}
-
-@media only screen and (max-device-width: 1024px) {
-  .parallax {background-attachment: scroll;}
-  .heading {top: 30%;} 
-  .middle {top: 15%;}
-}
-  </style>
-
-  </head>
-<body>
-<div class="container-fluid parallax bg-img1">
-  <div class="heading text-center">
-    <h2>The Dream of Akinosuke </h2>
-    <h1 class="text-uppercase"> Akinosuke no Yume</h1>
-  </div>
-</div>
-
-<div class="container-fluid py-5 bg-faded" id="hm">
-  <div class="container">
-    <div class="row py-3 pt-1">
-      <div class="col-sm-12">
-        <img src="https://i.imgur.com/f21xZtQ_d.webp?maxwidth=760&fidelity=grand" class="img-fluid rounded-circle mx-auto d-block" style="max-width: 350px" alt="YUME">
-      </div>
-    </div>
-    <div class="row py-3">
-      <p class="text-center lead">Akinosuke no Yume (YUME) is a new cryptocurrency that is set to fulfill the decentralization dreams of Ryoshi, the creator of Shiba Inu. YUME is designed to be a fully decentralized ecosystem that will empower individuals and promote financial freedom.</p>
-    </div>
-    <div class="row py-3 pb-1">
-      <div class="col-sm-12">
-        <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iKOK4lkC1MTJuxu4gnXhVQ.jpeg" class="rounded-circle img-fluid mx-auto d-block" style="max-width: 350px" alt="YUME">
-      </div>
-    </div>
-  </div>
-</div>  
-
-<div class="container-fluid parallax bg-img2">
-  <div class="middle">
-    <div class="container" style="max-width: 550px">
-      <blockquote class="text-center">
-        <i class="fa fa-quote-left fa-3x fa-pull-left" aria-hidden="true"></i>
-        <p class="mb-1 lead">Ryoshi, the creator of Shiba Inu, is a pioneer of decentralization in the cryptocurrency world. His beliefs in decentralization have been the foundation of all his projects, including Shiba Inu. However, Ryoshi realized that Shiba Inu had limitations that prevented him from fully realizing his vision of decentralization.</p>
-        <footer class="blockquote-footer text-uppercase text-white"></footer>
-      </blockquote>
-    </div>
-  </div>
-</div>
-
-
-<!-- FILM CARDS -->
-<div class="container pb-3 pt-5">
-  <!-- ROW 1 -->
-  <div class="card-deck">
-    <div class="card">
-      <img class="card-img-top img-fluid" src="https://www.logotypes101.com/logos/589/F4C00FF696A9C65B160D72C4C5CB7C23/burnt.png" alt="Burnt Liquidity">
-      <div class="card-block">
-        <h4 class="card-title">100% of the initial liquidity has been burnt </h4>
-        <p class="card-text">Burning the initial liquidity means that the Liquidity Pool (LP) tokens are never able to be redeemed, and that the intitial liquidity that has been added will forever stay in uniswap. </p>
-      </div>
-      <div class="card-footer">
-        <a href="https://etherscan.io/tx/0x1d4c77c1a17c423982f6013b1d6a341bb94452551f177c663793b982def4c446" target="_blank" class="card-link">View the Burn Transaction</a>
-      </div>
-    </div>
-    
-    <div class="card">
-      <img class="card-img-top img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Medium_logo_Monogram.svg/1200px-Medium_logo_Monogram.svg.png" alt="Yume Medium">
-      <div class="card-block">
-        <h4 class="card-title">Stay up to date!</h4>
-        <p class="card-text">The latest news about our project will always be posted on our blog that is hosted by medium. Find the link below where you can easily follow our account to get updates on the latest content.</p>
-      </div>
-      <div class="card-footer">
-        <a href="https://medium.com/@dreamofakinosuke" target="_blank" class="card-link">View YUME Medium</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ROW 2 -->
-  <div class="card-deck">
-    <div class="card">
-      <img class="card-img-top img-fluid" src="https://rare-gallery.com/mocahbig/58284-Telegram-HD-Wallpaper.png" alt="YUME Community">
-      <div class="card-block">
-        <h4 class="card-title">COMMUNITY </h4>
-        <p class="card-text">YUME is making waves in the crypto community due to its focus on decentralization. Decentralization is the foundation of YUME, and the project is being developed with the goal of creating a fully decentralized financial ecosystem that empowers individuals and promotes financial freedom. <br/> <br/>
-Use the link below to join our community where we are actively working to better the project.</p>
-      </div>
-      <div class="card-footer">
-        <a href="https://t.me/DreamofAkinosuke" target="_blank" class="card-link">Join our Community</a>
-      </div>
-    </div>
+@media (max-width: 768px) {
+  #roadmap {
+    padding: 10px;
+  }
   
-  </div>
-  <div class="card-deck">
-      <div class="card">
-      <i class="text-center  text-info card-img-top fa fa-certificate fa-3x" style="font-size:60px;"></i>
-      <div class="card-block">
-        <h4 class="card-title">Contract is Renounced </h4>
-        <p class="card-text">Renouncing the contract means the contract deployer has given ownership of the contract to the 0x000000000000000000000000000000000000dead address. This means that any functions that require the owner is the only caller, are no longer accessible, making $YUME safe as it gets. </p>
-      </div>
-      <div class="card-footer">
-        <a href="https://etherscan.io/tx/0x02f65f850bc255df29efe02a998a84d4898819a1c4887dfa691c32be6c5ace48" target="_blank" class="card-link">View the Renounced Transaction</a>
-      </div>
-    </div>
-  </div>
-  <div class="row my-4">
-    <div class="col-sm-12 text-center">
-      <a href="https://etherscan.io/token/0x15e82019d3d2479f6c5f24d9829e12545fa186c2" target="_blank" class="btn btn-default"><img class="img-fluid" src="https://etherscan.io/images/brandassets/etherscan-logo-circle.jpg"  style="max-width:30px;"/> &nbsp; View Etherscan</a>
-      <a title="Dextools" href="https://www.dextools.io/app/en/ether/pair-explorer/0x2e68ce26da87af3d052719c33aa760cc41749f42"class="btn btn-default">
-									 <img  style="max-width:30px;" src="https://www.dextools.io/app/assets/img/logo/dext-large-preview.png"> View Chart
-	      <a title="Telegram" class="btn btn-default" href="https://t.me/DreamofAkinosuke"><i class="fa fa-telegram"></i> Telegram </a>
-	    	      <a title="Twitter" class="btn btn-default" href="https://twitter.com/AkinosukeNoYume"><i class="fa fa-twitter"></i> Twitter </a>																																																</a>
-</a>
-    </div>
-  </div>
-  <div class="row my-4">
-  <div class="col-md-12">
-    <blockquote class="text-center">
-        <i class="fa fa-quote-left fa-3x fa-pull-left" aria-hidden="true"></i>
-      <p class="mb-1 main">Ryoshi hesitated for a moment before reaching out, wondering if his friend would even remember him after all these years. But when they finally met up, it was like no time had passed at all. They spent hours catching up, reminiscing about old times and laughing over shared memories.
-        <br/>
-<br/>
+  #roadmap h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #roadmap .item .icon {
+    font-size: 36px;
+    margin-right: 20px;
+  }
+  
+  #roadmap .item .text {
+    font-size: 16px;
+  }
+}
+  
+  section {
+    border-bottom: 3px solid var(--primary-color);
+  }
 
-And then Ryoshi brought up their unfinished trek. His friend’s eyes lit up at the suggestion, and before long they were making plans to finish what they had started all those years ago. They spent the next few weeks training and preparing, mapping out their route and gathering supplies.
-<br/><br/>
+  #community p, #home p {
+    margin-bottom:2rem;
+    margin-top:2rem;
+  }
+#community a {
+  display:flex;
+  justify-content:center; 
+  width: 200px;
+  margin:auto;
+  align-items:center;
+  column-gap:10px;
+  margin-top:2rem;
+}
+  
+  
+  hr {
+color: var(--primary-color) !important; }
 
-Finally, over the next few weeks, Ryoshi made his appearence evident within his old friends daily essence. Through little events, that would spawn spiratically, his legatimacy would be told.</p></blockquote>
-    </div>
-  </div>
-  <hr>
-  <footer class="text-center">
-    <p><i class="fa fa-code fa-1x" aria-hidden="true"></i> by <a href="./" target="_blank" class="card-link">AKINOSUKE NO YUME
-</a></p>
-  </footer>
-</div>
-  </body>
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AKINOSUKE NO YUME</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </nav>
+    <div class='d-flex'>
+    <button class='mat-icon-button'>
+      
+      LEND + BORROW &nbsp;
+      <i class='material-icons'>
+        launch
+      </i>
+      </button>
+<!-- Theme toggle button -->
+<button class='mat-icon-button' id="theme-toggle" aria-label="Toggle theme">
+  <i class="material-icons">brightness_6</i>
+</button>
+        </div>
+
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <h2>Welcome to AKINOSUKE NO YUME</h2>
+      <p>We are a community-driven cryptocurrency project focused on decentralization.</p>
+      <p>Our goal is to create a decentralized lending protocol via a decentralized app.</p>
+    </section>
+    <section id="roadmap">
+      <h2>Roadmap</h2>
+      <ul>
+        <li class="item"><i class="icon material-icons">launch</i> <span class="text"> Q2 2023: Launch of AKINOSUKE NO YUME cryptocurrency</span></li>
+        <hr style="padding:0;"/>
+        <li class="item" > <i class="icon material-icons">download</i> <span class="text">Q3 2023: Release of AKINOSUKE NO YUME whitepaper</span></li>
+                <hr style="padding:0;"/>
+
+        <li class="item">
+          <i class="icon material-icons">code</i> 
+          <span class="text">Q4 2023: Development of decentralized lending protocol begins</span></li>
+                      <hr style="padding:0;"/>
+
+        <li class="item">
+          <i class="icon material-icons">check</i>
+          <span class="text">Q1 2024: Beta release of decentralized lending protocol</span></li>
+                            <hr style="padding:0;"/>
+
+        <li class="item">
+          <i class="icon material-icons">add_circle</i>
+          <span class="text">Q2 2024: Official launch of decentralized lending protocol via decentralized app</span></li>
+      </ul>
+    </section>
+    <section id="community">
+      <h2>Community</h2>
+      <p>We believe that community is the backbone of any successful cryptocurrency project.</p>
+      <p>Join our Telegram group to stay up-to-date with AKINOSUKE NO YUME and connect with like-minded individuals:</p>
+      <a class="btn" href="https://t.me/DreamofAkinosuke">Join Us Today <i class="material-icons">launch</i></a>
+    </section>
+  
+  </main>
+  <script >// get the theme toggle button
+// Get the theme toggle button and the root element
+const themeToggle = document.getElementById('theme-toggle');
+const root = document.documentElement;
+
+// Check if the user has a preferred color scheme
+const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// If the user prefers dark mode, set the data-theme attribute to "dark"
+if (userPrefersDark) {
+  root.setAttribute('data-theme', 'dark');
+}
+
+// Toggle between light and dark mode
+themeToggle.addEventListener('click', function() {
+  // Get the current theme from the root element
+  const currentTheme = root.getAttribute('data-theme');
+    document.body.classList.toggle('dark-mode')
+
+  // If the current theme is "light", switch to "dark"
+  if (currentTheme === 'light') {
+    root.setAttribute('data-theme', 'dark');
+    themeToggle.innerHTML = '<i class="material-icons">wb_sunny</i>';
+  }
+  // If the current theme is "dark", switch to "light"
+  else {
+    root.setAttribute('data-theme', 'light');
+    themeToggle.innerHTML = '<i class="material-icons">brightness_6</i>';
+  }
+});
+    
+
+
+
+
+</script>
+    
+    <footer class="footer">
+      <span>&copy; YUMELABS.</span>
+    </footer>
+</body>
+</html>
+
